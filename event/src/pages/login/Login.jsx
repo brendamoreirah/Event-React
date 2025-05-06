@@ -14,11 +14,11 @@ const Login = () => {
                 
                     <div className="campos_login">
                         <div className="campo_input">
-                        <input type="username" name="nome"  placeholder="Digite seu nome"/>
+                        <input type="username" name="nome"  placeholder="Username"/>
                         </div>
                         <div className="campo_input">
                     
-                        <input type="password"  name="Password" placeholder="Digite sua senha"/>
+                        <input type="password"  name="Password" placeholder="Password"/>
                         </div>
                     </div>
                     <a href="">Esqueceu a senha?</a>
