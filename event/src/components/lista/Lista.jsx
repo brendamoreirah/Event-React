@@ -6,9 +6,9 @@ import Excluir from "../../assets/img/excluir.png"
 const Lista = (props) => {
     return (
         <>
-            <section className="listagem">
-            <h1>{`Lista de ${props.tituloLista}`}</h1>
-            <hr />
+        <section className="listagem">
+            <h1>{`Lista  ${props.tituloLista}`}</h1>
+            <hr className="linha_titulo" />
 
             <div className="tabela layout_grid">
                 <table>
@@ -22,22 +22,16 @@ const Lista = (props) => {
                     </thead>
                         <tbody>
                             <tr className="item_lista">
-                                <td data-cell={props.titulo}>xxxxxxxxxx</td>
+                                <td data-cell={props.titulo}>Tipo Evento</td>
                                 <td data-cell="Editar"><img src={Editar} alt="" /></td>
                                 <td data-cell="Excluir">< img src={Excluir} alt="" /></td>
                             </tr>
                         </tbody>
                 </table>
-
-
             </div>
-
 
         </section>
         </>
-    
-
     )
-
 }
 export default Lista;

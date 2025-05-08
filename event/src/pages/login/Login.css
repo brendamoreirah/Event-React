@@ -63,10 +63,10 @@
     }
     
 
+
     @media screen and (max-width: 768px){
-    
-        .banner{
+
+        .banner_login{
             display: none;
         }
-    
-    }
+     }

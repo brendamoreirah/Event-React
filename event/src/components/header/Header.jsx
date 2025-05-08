@@ -14,15 +14,15 @@ const Header = () =>{
 
             <nav className="nav_header">
 
-            <Link className="link_header" to="/Home">Home</Link>
+            <Link className="link_header" to="/">Home</Link>
             <Link className="link_header"  to="/Eventos">Eventos</Link>
-            <Link className="link_header" to="/Usuarios">Usuarios</Link>
+            <Link className="link_header" to="/TipoDeUsuario">Usuarios</Link>
             <Link className="link_header"  to="/Contatos">Contatos</Link>
             
             </nav>
 
             <nav className="nav_header admin">
-                <Link to="/Administrador" className="link_header" href="">Administrador<img scr={Admin}/></Link>
+                <Link to="/Administrador" className="link_header" href="">Administrador<img src={Admin}/></Link>
 
             </nav>
 

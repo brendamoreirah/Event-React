@@ -1,21 +1,25 @@
 .listagem{
-    min-height: calc(100vh - (75px + 252px + 40px ));
+    background-color: #b51d44;
+    min-height: calc(100vh - (75px + 252px + 40px));
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 0;
-    background-color: rgb(186, 26, 26);
+
+
 }
 
 
-.listagem hr{
+.linha_titulo{
     max-width: 300px;
     width: 100%;
-    margin-top: 5px;
-    border-color: #73061cc6;
-    border-width: 1px;
     border-style: solid;
-}
+    border-width: 1px;
+    border-color: #B51D44;
+    margin-top: 5px;
+    margin-bottom: 30px;
+ }
+
 
 .item_lista img {
     height: 30px;
@@ -42,24 +46,40 @@
 
 .tabela .table_cabecalho th{
       width: 100px;
+
   }
   
 
   .item_lista td{
-    padding: 20px 0 10px 0;
-}
+      color: white;
+      padding: 20px 0 10px 0;
+  }
+  
 
 .item_lista{
     text-align: center;
     border-bottom: solid 1px #73061B20;
 }
 
+.listagem h1{
+    color: white;
+    font-size: medium;
+}
+
+.tabela_cabecalho th{
+    color: white;
+    padding: 20px 0px;
+    border-bottom: 2px solid white;
+}
+
+
 
 @media screen and (max-width: 768px){
-    
+
     .tabela thead{
         display: none;
     }
+
 
     .item_lista td{
         display: grid;
@@ -69,13 +89,13 @@
 
     }
 
+
     .item_lista td::before{
         content: attr(data-cell) ":";
         font-weight: 700;
         width: 80px;
         text-align: left;
     }
-
 
     .item_lista td:last-child{
         margin-bottom: 24px;
@@ -84,4 +104,8 @@
     .item_lista td:first-child{
         margin-top: 24px;
     }
+
+
 }
+
+
