@@ -1,9 +1,12 @@
 import "./Lista.css";
 import Editar from "../../assets/img/editar.png"
 import Excluir from "../../assets/img/excluir.png"
+import React, { useState } from 'react';
 
 
 const Lista = (props) => {
+
+
     return (
         <>
         <section className="listagem">
@@ -20,12 +23,38 @@ const Lista = (props) => {
                             <th>Excluir</th>
                         </tr>
                     </thead>
-                        <tbody>
-                            <tr className="item_lista">
-                                <td data-cell={props.titulo}>Tipo Evento</td>
-                                <td data-cell="Editar"><img src={Editar} alt="" /></td>
-                                <td data-cell="Excluir">< img src={Excluir} alt="" /></td>
+                        <tbody>  
+                            {props.lista && props.lista.length > 0 ? (
+                                props.lista.map((item) => (
+                            <tr className="item_lista"
+                            key={item.IdTipoEvento }
+                            >
+                                <td data-cell={props.titulo}>{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
+                                <td data-cell="Tipo Evento" style={{ display: props.visibilidade }} >xxxxxxxxx</td>
+
+                                <td data-cell="Editar" className="botao_edicao">
+                                    <img src={Editar} 
+                                    onClick={() => props.funcEditar(item)}
+                                    
+                                    />
+                                    
+                                    </td>
+                                <td data-cell="Excluir" className="botao_edicao">
+                                    < img src={Excluir} 
+                                    alt="Lixeira"
+                                    onClick={() => props.funcExcluir(item)}
+                                    // style= {{cursor: "pointer"}}
+
+                                    />
+                                    </td>
                             </tr>
+
+                                ))
+                            ) : (
+                                <p>nenhum evento cadastrado</p>
+                            )
+                        
+                        }
                         </tbody>
                 </table>
             </div>
