@@ -14,7 +14,6 @@ import api from "../../Services/services";
 const CadastroTipoEvento = () => {
 
 
-
   const [tipoEvento, setTipoEvento] = useState([]);
   const [listaTipoEvento, setListaTipoEvento] = useState([]);
 
@@ -87,7 +86,7 @@ const CadastroTipoEvento = () => {
       try {
        await api.put(`TiposEventos/${tipo.idTipoEvento}`,
         {tituloTipoEvento: novoTipoEvento})
-        Swal.fire(`O TipoEvento modoficado ${novoTipoEvento}`);
+        Swal.fire(`O TipoEvento modificado ${novoTipoEvento}`);
       } catch (error) {
         console.log(error);
         
@@ -112,7 +111,7 @@ const CadastroTipoEvento = () => {
     if(resultado.isConfirmed) {
       try {
         await api.delete(`TiposEventos/${id.idTipoEvento}`);
-        alertar("secess", "Evento excluido com sucesso");
+        alertar("sucess", "Evento excluido com sucesso");
         listarTipoEvento();
       } catch (error) {
         console.log(error);
@@ -135,17 +134,19 @@ const CadastroTipoEvento = () => {
 
       <Cadastro
         img_banner={banner_CadastroTipoevento}
-        tituloCadastro=" Cadastro Tipo De Eventos"
-        visibilidade="none"
+        titulo_cadastro=" Cadastro Tipo De Eventos"
+        visible="none"
         nomes="Titulo"
         funcCadastro={cadastrarTipoEvento}
         valorInput={tipoEvento}
         setValorInput={setTipoEvento}
+        data="none"
       />
 
       <Lista
-        tituloLista="Tipo Evento"
+        tituloLista="Tipos Eventos"
         titulo="Titulo"
+        tipoLista="TiposEventos"
         visibilidade="none"
         lista={listaTipoEvento}
         funcEditar={editarTipoEvento}

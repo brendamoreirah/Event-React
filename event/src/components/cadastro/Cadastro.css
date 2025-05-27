@@ -35,8 +35,8 @@
 /* Modificando o input e select */
 
 .campo_cad_nome input,
-.campo_cad_genero select 
-{   
+.campo_cad_evento select {
+    border-radius: 6px;
     outline: none;
     padding: 0 5px;
     width: 300px;
@@ -45,7 +45,8 @@
 }
 
 .campo_cad_nome input,
-.campo_cad_genero select {
+.campo_cad_evento select,
+.campo_cad_evento textarea {
     display: flex;
     margin: 30px;
 
@@ -54,8 +55,9 @@
     border-left: none;
     outline: none;
 }
-.campo_cad_genero{
-    margin-bottom: 30PX;
+
+.campo_cad_evento {
+    /* margin-bottom: 30px; */
     color: gray;
 }
 
@@ -69,13 +71,23 @@
 
 }
 
+
+.campo_cad_evento textarea{
+    width: 300px;
+    max-width: 300px;
+    flex-wrap: wrap;
+    border-radius: 6px;
+      padding: 0 5px;
+}
+
+
 @media screen and (max-width: 880px) {
     .campos_cadastro {
         flex-direction: column;
         align-items: center;
     }
 
-    .banner_cadastro{
+    .banner_cadastro {
         display: none;
     }
 }
@@ -85,7 +97,8 @@
         font-size: 20px;
     }
 
-    .campo_preen, .campo_cad_nome{
+    .campo_preen,
+    .campo_cad_nome {
         padding: 0px 0px 0px 0px;
     }
 }

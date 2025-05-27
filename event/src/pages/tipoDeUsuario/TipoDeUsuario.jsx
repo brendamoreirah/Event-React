@@ -125,12 +125,14 @@ const TipoDeUsuario = () => {
 
       <Cadastro
         img_banner={banner_CadastroTipoDeUsuario}
-        tituloCadastro=" Cadastro Tipo De Usuario"
-        visibilidade="none"
+        titulo_cadastro=" Cadastro Tipo De Usuario"
+        visible="none"
         nomes="Titulo"
         funcCadastro={cadastrarTipoUsuario}
         valorInput={tipoUsuario}
         setValorInput={setTipoUsuario}
+        data="none"
+        
       />
 
       <Lista
@@ -142,6 +144,8 @@ const TipoDeUsuario = () => {
         lista={listaTipoUsuario}
         funcExcluir={excluirTipoUsuario}
         funcEditar={editarTipoUsuario}
+        linha_titulo="Tipo Usuario"
+        titulo_lista="Tipo Usuario"
 
       />
 
