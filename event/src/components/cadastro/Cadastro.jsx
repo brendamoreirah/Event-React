@@ -26,7 +26,7 @@ const Cadastro = (props) => {
 
                         <div className="campo_cad_evento" style={{ display: props.visible }}>
                             <label htmlFor="evento"></label>
-                            <select name="evento" id=""
+                            <select name="tipoDevento" id=""
                                 value={props.valorSelect}
                                 onChange={(e) => props.setValorSelect(e.target.value)}>
                                 <option value="" disabled selected>Tipo Evento</option>

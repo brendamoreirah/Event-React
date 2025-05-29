@@ -133,6 +133,7 @@ const TipoDeUsuario = () => {
         setValorInput={setTipoUsuario}
         data="none"
         
+        
       />
 
       <Lista
@@ -140,7 +141,7 @@ const TipoDeUsuario = () => {
         titulo="Titulo"
         visibilidade="none"
 
-        tipoLista="tipoUsuario"
+        tipoLista="TiposUsuarios"
         lista={listaTipoUsuario}
         funcExcluir={excluirTipoUsuario}
         funcEditar={editarTipoUsuario}

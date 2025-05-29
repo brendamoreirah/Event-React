@@ -151,6 +151,7 @@ const CadastroTipoEvento = () => {
         lista={listaTipoEvento}
         funcEditar={editarTipoEvento}
        funcExcluir={excluirTipoEvento}
+       titulo_lista="Tipo Eventos"
 
       />
 
