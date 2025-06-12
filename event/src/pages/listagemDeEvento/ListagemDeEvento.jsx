@@ -31,6 +31,8 @@ const ListagemDeEvento = () => {
 
     const [usuarioId, setUsuarioId] = useState("3FA85F64-5717-4562-B3FC-2C963F66AFA6")
 
+   
+
 
     async function listarEventos() {
         try {
@@ -84,6 +86,8 @@ const ListagemDeEvento = () => {
         setDadosModal({});
         setTipoModal("");
     }
+
+    
 
     async function manipularPresenca(idEvento, presenca, idPresenca) {
         try {
@@ -164,7 +168,7 @@ const ListagemDeEvento = () => {
                         {/* <hr className="divi" /> */}
                         <tbody>
                             {listaEventos.length > 0 ? (
-                                filtarEventos() && filtarEventos().map((item) => (
+                                filtrarEventos() && filtrarEventos().map((item) => (
                                     <tr className="item_listagem espaco">
                                         <td className="left" data-cell="Título">{item.nomeEvento}</td>
                                         <td className="lefft" data-cell="Data Do Evento">{format(item.dataEvento, "dd/MM/yy")}</td>
