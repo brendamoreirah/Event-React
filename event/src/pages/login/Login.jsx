@@ -1,18 +1,21 @@
-import Logo from "../../assets/img/logo1.svg"
-import "./Login.css"
-import Botao from "../../components/botao/Botao"
-import api from "../../Services/services"
-import { useEffect, useState } from "react";
+import Logo from "../../assets/img/logo1.svg";
+import "./Login.css";
+import Botao from "../../components/botao/Botao";
+import api from "../../Services/services";
+import { useState } from "react";
 import { userDecodeToken } from "../../auth/Auth";
 import secureLocalStorage from "react-secure-storage";
-
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContexts";
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const navigate
+    const navigate = useNavigate();
+    
+
+    const {setUsuario} = useAuth();
 
     async function realizarAutenticacao(e){
         e.preventDefault();
@@ -21,71 +24,81 @@ const Login = () => {
             email: email,
             senha: senha
         }
-        if(senha.trim() != "" || email.trim() != ""){
+        if(senha.trim() != "" || email.trim() !=""){
 
             try {
                 const resposta = await api.post("Login", usuario);
-                const token =resposta.data.token;
 
-                if(token){
-                    //token sera decodificado:
-                   const tokenDecodificado = userDecodeToken(token);
-                    // console.log("tokem decodificado!")
+                const token = resposta.data.token;
+           
+
+                if (token) {
+                    userDecodeToken(token);
+                    const tokenDecodificado = userDecodeToken(token);
+
+                    // console.log("Token decodificado");
                     // console.log(tokenDecodificado.tipoUsuario);
 
-                    secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado))
+                   setUsuario(tokenDecodificado);
+                    
+                    secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado));
 
-                    if(tokenDecodificado.tipoUsuario === "aluno"){
-                        //redirecionar a tela de lista de eventos(branco)
-                        navigate("/Eventos")
+                    if (tokenDecodificado.tipoUsuario === "aluno") {
+                        navigate("/Home")
                     }else{
-                        //ele vai me redirecionar para a tela de cadastro de eventos(vermelha)
+                        navigate("/ListagemDeEvento")
                     }
-
                 }
                 
-                console.log(token);
-                
+    
             } catch (error) {
                 console.log(error);
+                alert("Email ou senha invalido! Para duvidas, entre em contato com o suporte.");
             }
         }else{
-            alert("Preencha os campos vazios para realizar o login!")
+            alert("PREENCHA OS CAMPOS VAZIOS PARA REALIAZAR O LOGIN!")
         }
 
     }
 
-    return (
+    return(
+
+
         <main className="main_login">
-            <div className="banner"></div>
+            <div className="Banner"></div>
             <section className="section_login">
-                <img src={Logo} alt="Logo do Event" />
-                <form action="" className="formulario_login" onSubmit={realizarAutenticacao}>
-                
-                    <div className="campos_login">
-                        <div className="campo_input">
-                        <input type="username" name="nome" 
-                         placeholder="Username"
-                         value={email}
-                         onChange={(e)=>setEmail(e.target.value)}/>
-                        </div>
-                        <div className="campo_input">
+                <img src={Logo} alt="Logo do Event+" />
+                <form action="" className="form_login" onSubmit={realizarAutenticacao}>
+                <h1>Login</h1>
+            <div className="campos_login">
+                <div className="campo_input">
+                    {/* <label htmlFor="username">username:</label> */}
+                    {/* <input type="username" name="username" placeholder="Username"/> */}
+                </div>
+                <div className="campo_input">
+                    <label htmlFor="password">password:</label>
+                    <input type="email" name="email" 
+                    placeholder="E-mail" 
+                    value={email} 
+                    onChange={(e)=>setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="campo_input">
+                    <label htmlFor="password">password:</label>
+                    <input type="password" name="Senha" 
+                    placeholder="Senha" 
+                    value={senha} 
+                    onChange={(e)=>setSenha(e.target.value)}
+                    />
                     
-                        <input type="password" 
-                         name="Password" placeholder="Password"
-                          value={senha}
-                         onChange={(e)=>setSenha(e.target.value)}/>
-                         
-                        </div>
-                    </div>
-                    <a href="">Esqueceu a senha?</a>
-                    <Botao nomeDoBotao="Entar" />
-      
+                </div>
+              </div>
+              <p>Esqueceu a senha?</p>
+              <Botao nomeDoBotao="Login"/>
                 </form>
             </section>
         </main>
-
-
     )
 }
+
 export default Login;

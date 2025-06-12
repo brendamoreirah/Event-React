@@ -17,6 +17,9 @@ import Modal from "../../components/modal/Modal"
 
 import Swal from "sweetalert2";
 
+import { useAuth } from "../../contexts/AuthContexts";
+
+
 const ListagemDeEvento = () => {
 
     const [listaEventos, setListaEventos] = useState([]);
@@ -29,9 +32,8 @@ const ListagemDeEvento = () => {
     //filtro
     const [filtroData, setFiltroData] = useState("todos");
 
-    const [usuarioId, setUsuarioId] = useState("3FA85F64-5717-4562-B3FC-2C963F66AFA6")
-
-   
+    const {usuario} = useAuth();
+    // const [usuarioId, setUsuarioId] = useState("3FA85F64-5717-4562-B3FC-2C963F66AFA6")
 
 
     async function listarEventos() {
@@ -41,7 +43,7 @@ const ListagemDeEvento = () => {
             const resposta = await api.get("Eventos");
             const todosOsEventos = resposta.data;
 
-            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuarioId)
+            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuario.idUsuario)
             const minhasPresencas = respostaPresenca.data
 
             const eventosComPresencas = todosOsEventos.map((atualEvento) => {
@@ -73,6 +75,7 @@ const ListagemDeEvento = () => {
 
     useEffect(() => {
         listarEventos();
+        // console.log(usuario);
     }, [])
 
     function abrirModal(tipo, dados) {
@@ -103,7 +106,7 @@ const ListagemDeEvento = () => {
                 Swal.fire(`Confirmado`, `Sua presenca foi confirmada`, `sucess`);
             } else {
                 //cadstrar uma nova presenca
-                await api.post("PresencasEventos", { situacao: true, idUsuario: usuarioId, idEvento: idEvento });
+                await api.post("PresencasEventos", { situacao: true, idUsuario: usuario.idUsuario, idEvento: idEvento });
                 Swal.fire(`Confirmado!`, `Sua presenca foi confurmada`, `secess`);
                 listarEventos()
             }
