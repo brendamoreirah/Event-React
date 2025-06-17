@@ -2,10 +2,10 @@ import { BrowserRouter,Route, Routes, Navigate, Router } from "react-router-dom"
 import Login from "../pages/login/Login";
 import CadastroTipoEvento from "../pages/cadastroTipoEvento/CadastroTipoEvento";
 import CadastroDeEvento from "../pages/cadastroDeEvento/CadastroDeEventos";
-import CadastroTipoUsuario from "../pages/cadastroTipoUsuario/CadastroTipoUsuario";
+import CadastroTipoDeUsuario from "../pages/tipoDeUsuario/TipoDeUsuario";
 import ListagemDeEvento from "../pages/listagemDeEvento/ListagemDeEvento";
 import { useAuth } from "../contexts/AuthContext";
-
+import { AuthProvider } from '../contexts/AuthContext';
 const Privado = (props) => {
     const { usuario } = useAuth();
     //toke, idUsuario, tipoUsuario
@@ -34,18 +34,18 @@ const Rotas =() => {
             <Route path="/TipoEvento" element={<CadastroTipoEvento/>}/>
 
             {/* http://localhost:3000/Evento => Cadastro ventos */}
-            <Route path="/Evento" element={<CadastroEvento/>}/>
+            <Route path="/Evento" element={<CadastroDeEvento/>}/>
 
             {/* http://localhost:3000/TipoUsuario => Cadastro do Usuario */}
-            <Route path="/TipoUsuario" element={<CadastroTipoUsuario/>}/>
+            <Route path="/TipoDeUsuario" element={<CadastroTipoDeUsuario/>}/>
 
             {/* http://localhost:3000/Eventos => Eventos */}
             <Route path="/ListagemEvento" element={<ListagemDeEvento/>}/>
 
             <Route path="/" element={<Login/>} exact />
-                <Route element={<Privado tipoPermitido="Adm" Item={CadastroEvento} />} path="/Evento"  />
+                <Route element={<Privado tipoPermitido="Adm" Item={CadastroDeEvento} />} path="/Evento"  />
                 <Route element={<Privado tipoPermitido="Adm" Item={CadastroTipoEvento}/>} path="/TipoEvento"  />
-                <Route element={<Privado tipoPermitido="Adm" item={CadastroTipoUsuario}/>} path="/TipoUsuario"  />
+                <Route element={<Privado tipoPermitido="Adm" item={CadastroTipoDeUsuario}/>} path="/TipoUsuario"  />
                 <Route element={<Privado tipoPermitido="aluno" item={ListagemDeEvento}/>} path="/ListagemDeEvento"  />
 
         </Routes>

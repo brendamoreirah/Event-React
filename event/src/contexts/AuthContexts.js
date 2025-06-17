@@ -1,6 +1,8 @@
 // importar funções do React necessãrias para criar e usar contexto
 
 import { createContext, useState, useContext } from "react";
+import secureLocalStorage from "react-secure-storage";
+
 
 //Cria o contexto de autenticacao, que vai permitir compartilhar dados entre componentes
 const AuthContext = createContext();
@@ -9,7 +11,11 @@ const AuthContext = createContext();
 //provider = prover/dar
 export const AuthProvider = ({ children}) => {
 
-    const [usuario, setUsuario] = useState(null)
+   const [usuario, setUsuario] = useState(() => {
+    const usuarioSalvo = secureLocalStorage.getItem("tokenLogin");
+    return usuarioSalvo ? JSON.parse(usuarioSalvo) : undefined;
+});
+
     
 
     return(
